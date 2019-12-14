@@ -6,16 +6,14 @@ class ArmstrongNumbers {
       return true;
     }
 
+    final int digits = (log(number) / ln10).ceil(); //log 10(x)
     int calcNumber = number;
-    List<num> resultLst = List();
-    while (calcNumber != 0) {
-      resultLst.add(calcNumber.remainder(10));
+    num result = 0;
+    for (int i = 0; i < digits; i++) {
+      result += pow(calcNumber % 10, digits);
       calcNumber = calcNumber ~/ 10;
     }
 
-    return number ==
-        resultLst
-            .map((value) => pow(value, resultLst.length))
-            .reduce((value, element) => value + element);
+    return result == number;
   }
 }
